@@ -7,7 +7,7 @@ import 'orders.dart';
 
 class ScreenSetting extends StatelessWidget {
   const ScreenSetting({Key? key}) : super(key: key);
-  final bool = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -64,7 +64,7 @@ class ScreenSetting extends StatelessWidget {
                   ),
                   SettingsTile.switchTile(
                     onToggle: (value) {},
-                    initialValue: bool,
+                    initialValue: true,
                     leading: const Icon(Icons.format_paint),
                     title: const Text('Enable custom theme'),
                   ),

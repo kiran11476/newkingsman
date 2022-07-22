@@ -16,39 +16,35 @@ class HomePage extends StatelessWidget {
       ScreenWishList(),
       ScreenSetting()
     ];
-    return BlocBuilder<BottomNavCubit, Bottombutton>(
-      builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text(
-              'KingsMan',
-              style: TextStyle(color: Colors.yellow),
-            ),
-            backgroundColor: Colors.black,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'KingsMan',
+          style: TextStyle(color: Colors.yellow),
+        ),
+        backgroundColor: Colors.black,
+      ),
+      body: pages[context.watch<Counter>().pageindex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: context.read<Counter>().pageindex,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
-          body: pages[state.currentindex],
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: state.currentindex,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                label: ' cart',
-                icon: Icon(Icons.shopping_cart_outlined),
-              ),
-              BottomNavigationBarItem(
-                label: 'Settings',
-                icon: Icon(Icons.settings),
-              ),
-            ],
-            onTap: (index) {
-              context.read<BottomNavCubit>().index(index);
-            },
+          BottomNavigationBarItem(
+            label: ' cart',
+            icon: Icon(Icons.shopping_cart_outlined),
           ),
-        );
-      },
+          BottomNavigationBarItem(
+            label: 'Settings',
+            icon: Icon(Icons.settings),
+          ),
+        ],
+        onTap: (index) {
+          context.read<Counter>().navpage(index);
+        },
+      ),
     );
   }
 }

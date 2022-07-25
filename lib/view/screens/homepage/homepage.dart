@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newkings/view/screens/homepage/ssssscreen.dart';
 
-import '../../../controller/cubit/bottom_nav_cubit.dart';
+import '../../../controller/eamil/bottom_nav_cubit.dart';
 import '../cart/wishlist.dart';
 import '../settings/settings.dart';
 

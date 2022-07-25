@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:newkings/view/screens/signinpage/screen1_log.dart';
 import 'package:provider/provider.dart';
 
-import 'controller/cubit/bottom_nav_cubit.dart';
+import 'controller/eamil/bottom_nav_cubit.dart';
 
 void main() {
   runApp(const MyAp());

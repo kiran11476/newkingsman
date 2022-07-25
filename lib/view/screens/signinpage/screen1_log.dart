@@ -3,17 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:newkings/view/screens/siguppage/screen2_signup.dart';
 
-import '../../../controller/cubit/emailcontoller/emailcontroller.dart';
-import '../homepage/homepage.dart';
+import '../../../controller/eamil/emailcontoller/emailcontroller.dart';
+
+import '../../../controller/validator/validationcontroller.dart';
 import '../widgets/background_image.dart';
 
 late Size size;
 
 class LogInScreen extends StatelessWidget {
   LogInScreen({Key? key}) : super(key: key);
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+
   final loginController = Get.put(LogInController());
 
   get kingsman => null;
@@ -51,7 +52,10 @@ class LogInScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 60),
                     child: CupertinoTextFormFieldRow(
-                      controller: emailController,
+                      validator: (mail) {
+                        validController.mailValidation(mail!);
+                      },
+                      controller: _mailController,
                       placeholder: 'Enter your Email',
                       decoration: BoxDecoration(
                           borderRadius:
@@ -61,7 +65,10 @@ class LogInScreen extends StatelessWidget {
                     ),
                   ),
                   CupertinoTextFormFieldRow(
-                    controller: passwordController,
+                    validator: (password) {
+                      validController.passwordValidation(password!);
+                    },
+                    controller: _passwordController,
                     obscureText: true,
                     placeholder: 'Enter your password',
                     decoration: BoxDecoration(
@@ -73,10 +80,7 @@ class LogInScreen extends StatelessWidget {
                   ),
                   CupertinoButton(
                     color: const Color.fromARGB(147, 227, 237, 229),
-                    onPressed: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (ctx) => const HomePage()));
-                    },
+                    onPressed: signinButtonPressed,
                     child: const Text(
                       "Sign In",
                       style: TextStyle(color: CupertinoColors.white),
@@ -94,9 +98,7 @@ class LogInScreen extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          loginController.userSignin(
-                              emailController.text.trim(),
-                              passwordController.text.trim());
+                          Get.to(const SignUpPage());
                         },
                         child: const Text(
                           'Sign In',
@@ -111,4 +113,24 @@ class LogInScreen extends StatelessWidget {
           ),
         ));
   }
+
+  void signinButtonPressed() {
+    final mail = _mailController.text.trim();
+    final password = _passwordController.text.trim();
+    if (mail.isEmpty || password.isEmpty) {
+      Get.snackbar(
+          snackPosition: SnackPosition.BOTTOM,
+          'fill the field',
+          'Every Fields Are Required',
+          colorText: Colors.red);
+      return;
+    } else {
+      authController.userSignin(mail, password);
+    }
+  }
+
+  final validController = Get.put(ValidationController());
+  final authController = Get.put(LogInController());
+  final _mailController = TextEditingController();
+  final _passwordController = TextEditingController();
 }

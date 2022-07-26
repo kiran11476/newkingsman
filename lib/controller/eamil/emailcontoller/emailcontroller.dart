@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:newkings/model/login_model.dart';
 import 'package:newkings/view/screens/homepage/homepage.dart';
 import 'package:newkings/view/screens/homepage/ssssscreen.dart';
 
@@ -16,11 +19,24 @@ class LogInController extends GetxController {
     Map<String, dynamic> signIn = {"email": email, "password": password};
     try {
       final response = await AuthServices().checkLogin(signIn);
-
-      if (response!.statusCode == 200 || response.statusCode == 201) {
-        Get.offAll(
-          const HomePage(),
-        );
+      log(response!.statusCode.toString());
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        log(response.toString());
+        UserLoginModel datas = userLoginModelFromJson(response.data);
+        print(datas.response!.status.toString());
+        if (datas.response!.status!) {
+          Get.offAll(
+            const HomePage(),
+          );
+        } else {
+          Get.snackbar(
+            'Login Error',
+            'entered mail or password is incorrect',
+            snackPosition: SnackPosition.TOP,
+            colorText: Colors.red,
+          );
+        }
+        log(response.data);
       } else {
         Get.snackbar(
           'Login Error',
@@ -51,6 +67,7 @@ class LogInController extends GetxController {
     try {
       final response = await AuthServices().checkSignin(signupData);
       if (response!.statusCode == 200 || response.statusCode == 201) {
+        log(response.toString());
         final data = signUpModelFromJson(response.data);
 
         if (data.response.acknowledged) {

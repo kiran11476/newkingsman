@@ -32,11 +32,16 @@ dependencies:
   carousel_slider: ^4.1.1
   cupertino_icons: ^1.0.5
   dio: ^4.0.6
+
+
+
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
   get: ^4.6.5
   google_fonts: ^3.0.1
+
+
   provider: ^6.0.3
   settings_ui: ^2.0.2
   shared_preferences: ^2.0.15

@@ -2,10 +2,11 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 
+//http://127.0.0.1:3000/
 class AuthServices {
   final dio = Dio(
     BaseOptions(
-        baseUrl: 'http://127.0.0.1:3000/', responseType: ResponseType.plain),
+        baseUrl: 'http://10.0.2.2:3000/', responseType: ResponseType.plain),
   );
   //>>>check signin status<<<//
   Future<Response<dynamic>?> checkLogin(signinData) async {

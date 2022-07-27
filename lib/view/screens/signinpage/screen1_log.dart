@@ -98,7 +98,7 @@ class LogInScreen extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Get.to(const SignUpPage());
+                          Get.to(SignUpPage());
                         },
                         child: const Text(
                           'Sign In',

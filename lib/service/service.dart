@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 
@@ -16,7 +17,9 @@ class AuthServices {
 
   //>>>check signin status<<<//
   Future<Response<dynamic>?> checkSignin(signupData) async {
+    log('hrreerere');
     final response = await dio.post('signup', data: jsonEncode(signupData));
+    print(response.toString());
     return response;
   }
 

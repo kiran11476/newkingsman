@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:newkings/model/login_model.dart';
 import 'package:newkings/view/screens/homepage/homepage.dart';
-import 'package:newkings/view/screens/homepage/ssssscreen.dart';
 
 import '../../../model/signupmodel.dart';
 import '../../../service/service.dart';
@@ -55,20 +54,21 @@ class LogInController extends GetxController {
       String confirmPassword) async {
     isLoading(true);
     Map<String, dynamic> signupData = {
-      "Name": name,
-      "Mobile": mobile,
-      "Emailaddress": mail,
-      "Password": password,
-      "confirmPass": confirmPassword,
+      "Name": 'name',
+      "Mobile": '9556565656',
+      "Emailaddress": 'mail@mail.com',
+      "Password": '123123',
+      "confirmPass": '123123',
     };
     try {
       final response = await AuthServices().checkSignin(signupData);
-      if (response!.statusCode == 200 || response.statusCode == 201) {
+      log(response!.toString());
+      if (response.statusCode == 200 || response.statusCode == 201) {
         log(response.data.toString());
         SignUpModel datass = signUpModelFromJson(response.data);
-        log(datass.response.insertedId.toString());
+        log(datass.response.acknowledged.toString());
         if (datass.response.acknowledged) {
-          log(datass.response.acknowledged.toString());
+          // log(datass.response.acknowledged.toString());
           Get.offAll(
             const HomePage(),
           );

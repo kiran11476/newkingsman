@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:newkings/view/screens/product/productscreen.dart';
 
 import '../../../controller/product_cont/productcrontroller.dart';
 
@@ -37,46 +38,52 @@ class HomeScreen extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       itemCount: controller.recieved!.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                            color: const Color.fromARGB(255, 255, 254, 254),
-                            height: 100,
-                            width: 50,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Stack(
-                                  children: [
-                                    Image(
-                                      image: NetworkImage(
-                                          "http://10.0.2.2:3000/uploads/${controller.recieved![index].images![0].filename}"),
-                                    ),
-                                    // Positioned(
-                                    //   right: 10,
-                                    //   child: IconButton(
-                                    //       onPressed: () {},
-                                    //       icon: const Icon(Icons.favorite)),
-                                    // )
-                                  ],
-                                ),
-                                Text(
-                                  controller.recieved![index].productName,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                ),
-                                Text(
-                                  controller.recieved![index].productPrice,
-                                  style: const TextStyle(
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                ),
-                                // const Text(
-                                //   'Price rs',
-                                //   style: TextStyle(fontWeight: FontWeight.bold),
-                                // ),
-                              ],
-                            ));
+                        return InkWell(
+                          onTap: () {
+                            Get.to(ScreenProduct(
+                                product: controller.recieved![index]));
+                          },
+                          child: Container(
+                              color: const Color.fromARGB(255, 255, 254, 254),
+                              height: 100,
+                              width: 50,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Stack(
+                                    children: [
+                                      Image(
+                                        image: NetworkImage(
+                                            "http://10.0.2.2:3000/uploads/${controller.recieved![index].images![1].filename}"),
+                                      ),
+                                      // Positioned(
+                                      //   right: 10,
+                                      //   child: IconButton(
+                                      //       onPressed: () {},
+                                      //       icon: const Icon(Icons.favorite)),
+                                      // )
+                                    ],
+                                  ),
+                                  Text(
+                                    controller.recieved![index].productName,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
+                                  Text(
+                                    controller.recieved![index].productPrice,
+                                    style: const TextStyle(
+                                        color: Colors.green,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
+                                  // const Text(
+                                  //   'Price rs',
+                                  //   style: TextStyle(fontWeight: FontWeight.bold),
+                                  // ),
+                                ],
+                              )),
+                        );
                       });
             })
       ]),

@@ -10,9 +10,9 @@ class ProductController extends GetxController {
   getCategoryWiseProduct() async {
     try {
       final response = await HomeService().getCategoryWiseProduct();
-
       if (response!.statusCode == 200 || response.statusCode == 201) {
         final received = categoryShoesModelFromJson(response.data);
+        log(received.toString());
         recieved = received.obs;
         update();
       }

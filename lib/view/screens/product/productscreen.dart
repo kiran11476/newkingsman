@@ -2,19 +2,23 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:newkings/controller/product_cont/productcrontroller.dart';
+import 'package:newkings/model/product_model.dart';
 
 import '../widgets/widgets.dart';
 
 class ScreenProduct extends StatelessWidget {
-  const ScreenProduct({Key? key}) : super(key: key);
+  final CategoryShoesModel product;
+  const ScreenProduct({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CupertinoColors.systemGrey5,
       appBar: kingsman,
-      body: const ProductFeild(),
+      body: ProductFeild(),
       bottomSheet: const BuyNow(),
     );
   }
@@ -73,10 +77,12 @@ class BuyNow extends StatelessWidget {
   }
 }
 
+//
 class ProductFeild extends StatelessWidget {
-  const ProductFeild({
+  ProductFeild({
     Key? key,
   }) : super(key: key);
+  final controller = Get.put(ProductController());
 
   @override
   Widget build(BuildContext context) {
@@ -88,10 +94,7 @@ class ProductFeild extends StatelessWidget {
           child: Swiper(
             autoplayDisableOnInteraction: true,
             itemBuilder: (context, index) {
-              return Image.network(
-                'https://t3.ftcdn.net/jpg/03/67/38/78/360_F_367387846_OKdglMdC8NSHIaW65XUoiVfTjErAcOdr.jpg',
-                fit: BoxFit.contain,
-              );
+              return Container();
             },
             itemCount: 10,
             control: SwiperControl(
@@ -131,7 +134,7 @@ class ProductFeild extends StatelessWidget {
                     width: 300,
                     height: 50,
                     child: Text(
-                      'AEROFUSION BLACK  HSJSK',
+                      controller.recieved![0].productName,
                       style: GoogleFonts.lato(
                         textStyle: const TextStyle(
                           overflow: TextOverflow.ellipsis,
@@ -143,7 +146,7 @@ class ProductFeild extends StatelessWidget {
                   ),
                   kheight20,
                   Text(
-                    ' ₹ 290000 /-',
+                    controller.recieved![0].productPrice,
                     style: GoogleFonts.lato(
                       textStyle: const TextStyle(
                         color: Colors.green,
@@ -160,11 +163,11 @@ class ProductFeild extends StatelessWidget {
                   ),
                   kheight20,
                   kheight20,
-                  const SizedBox(
+                  SizedBox(
                     width: 280,
                     child: Text(
-                      'A contemporary style which plays with established codes, a creative universe where elegance rules.',
-                      style: TextStyle(overflow: TextOverflow.clip),
+                      controller.recieved![0].productDescription,
+                      style: const TextStyle(overflow: TextOverflow.clip),
                     ),
                   ),
                 ],
@@ -179,3 +182,5 @@ class ProductFeild extends StatelessWidget {
     );
   }
 }
+
+// final controller = Get.put(ProductController());

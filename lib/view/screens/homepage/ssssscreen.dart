@@ -7,7 +7,9 @@ import 'package:newkings/view/screens/product/productscreen.dart';
 import '../../../controller/product_cont/productcrontroller.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key, this.name}) : super(key: key);
+
+  final String? name;
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +53,10 @@ class HomeScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Stack(
-                                    children: [
+                                    children: const [
                                       Image(
                                         image: NetworkImage(
-                                            "http://10.0.2.2:3000/uploads/${controller.recieved![index].images![1].filename}"),
+                                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQah-v0pRNzG2KOCV66mDo8ny6980LDOHnY3A&usqp=CAU'),
                                       ),
                                       // Positioned(
                                       //   right: 10,
@@ -66,9 +68,7 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                   Text(
                                     controller.recieved![index].productName,
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
+                                    style: const TextStyle(fontSize: 18),
                                   ),
                                   Text(
                                     controller.recieved![index].productPrice,
@@ -123,7 +123,22 @@ class CarouselHii extends StatelessWidget {
               image: const DecorationImage(
                 fit: BoxFit.cover,
                 image: NetworkImage(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxlrnXjcUM2OmKWYj8p2dQJCf2lsHM6_wmXQ&usqp=CAU'),
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv9BsrOlB7oocGkfo2GTIhThYVdBvqSvt56w&usqp=CAU'),
+                filterQuality: FilterQuality.high,
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: padding,
+          child: Container(
+            width: width,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              image: const DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage(
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOXkRyiUuS2LDrq1qnxliBXrkMuJLS2Xl1Mw&usqp=CAU'),
                 filterQuality: FilterQuality.high,
               ),
             ),
@@ -245,3 +260,10 @@ class CarouselHii extends StatelessWidget {
         //     ),
         //   ),
         // ),
+
+
+
+
+
+
+

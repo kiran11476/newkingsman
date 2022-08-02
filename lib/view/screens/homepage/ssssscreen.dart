@@ -2,6 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:newkings/main.dart';
+import 'package:newkings/service/cart_service.dart';
 import 'package:newkings/view/screens/product/productscreen.dart';
 
 import '../../../controller/product_cont/productcrontroller.dart';
@@ -13,6 +15,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CartServiceEndPoint().getCartItems(loggedKey);
     return SingleChildScrollView(
       child: Column(children: [
         const CarouselHii(
@@ -26,7 +29,10 @@ class HomeScreen extends StatelessWidget {
             init: ProductController(),
             builder: (controller) {
               return controller.recieved == null
-                  ? const Center(child: CircularProgressIndicator())
+                  ? const Center(
+                      child: CircularProgressIndicator(
+                      color: Colors.deepPurpleAccent,
+                    ))
                   : GridView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       gridDelegate:

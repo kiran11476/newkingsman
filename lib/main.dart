@@ -10,6 +10,8 @@ void main() async {
   runApp(const MyAp());
 }
 
+const loggedKey = 'login successful';
+
 class MyAp extends StatelessWidget {
   const MyAp({Key? key}) : super(key: key);
 

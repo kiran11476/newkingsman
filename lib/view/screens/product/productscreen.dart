@@ -19,7 +19,9 @@ class ScreenProduct extends StatelessWidget {
     return Scaffold(
       backgroundColor: CupertinoColors.systemGrey5,
       appBar: kingsman,
-      body: ProductFeild(),
+      body: ProductFeild(
+        product: product,
+      ),
       bottomSheet: const BuyNow(),
     );
   }
@@ -27,8 +29,8 @@ class ScreenProduct extends StatelessWidget {
 
 //
 class ProductFeild extends StatelessWidget {
-  late CategoryShoesModel? product;
-  ProductFeild({Key? key, this.product}) : super(key: key);
+  CategoryShoesModel? product;
+  ProductFeild({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +86,7 @@ class ProductFeild extends StatelessWidget {
                               width: 300,
                               height: 50,
                               child: Text(
-                                controller.recieved![0].productName,
+                                product!.productName,
                                 style: GoogleFonts.lato(
                                   textStyle: const TextStyle(
                                     overflow: TextOverflow.ellipsis,

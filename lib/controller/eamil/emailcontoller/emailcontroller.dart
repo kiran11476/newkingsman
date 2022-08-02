@@ -54,11 +54,11 @@ class LogInController extends GetxController {
       String confirmPassword) async {
     isLoading(true);
     Map<String, dynamic> signupData = {
-      "Name": 'name',
-      "Mobile": '9556565656',
-      "Emailaddress": 'mail@mail.com',
-      "Password": '123123',
-      "confirmPass": '123123',
+      "Name": name,
+      "Mobile": mobile,
+      "Emailaddress": mail,
+      "Password": password,
+      "confirmPass": confirmPassword,
     };
     try {
       final response = await AuthServices().checkSignin(signupData);
